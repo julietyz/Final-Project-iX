@@ -1,0 +1,12 @@
+<h3>
+    Welcome To FS BnB Admin Panel!
+</h3>
+<div>
+    <h4 style="text-align: center">Online Growth Percentages</h4>
+    <div style="display: block">
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+    </div>
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+</div>
