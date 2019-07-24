@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Login</ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-padding" style="text-align: center">
+      <div class="genevaLogin">
+          <h1>Login to Your Account </h1>
+          <p></p>
+          <input type="text" name="activity" placeholder="Email" [(ngModel)]="email">
+          <p></p>
+          <input type="text" name="activity" placeholder="Password" type="password" [(ngModel)]="password">
+          <p></p>
+          <ion-button size="large" color="medium" (click)="loginBackend()">Login</ion-button>
+          <p></p>
+          Don't Have an Account? 
+        <p></p>
+        <ion-button color="medium" (click)="navToHome()">Register</ion-button>
+        </div>
+      </div>
+      
+</ion-content>

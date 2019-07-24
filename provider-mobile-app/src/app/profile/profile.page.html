@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <div>
+    <div class="ion-padding" align="center">
+    
+      <div *ngFor="let provider of providers">
+          <h1>Welcome, {{provider.firstName}}</h1>
+          <p></p>
+          <ion-avatar class="avatar">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-avatar>
+          <p></p>
+          Email: {{provider.email}}
+      </div>
+        <p></p>
+        <ion-button (click)="naveToNewRental()">Create New Rental</ion-button>
+        <p></p>
+        <h3>Your Rentals</h3>
+
+        <p></p>
+        <ion-card *ngFor="let listing of listingsBackend" (click)="navToPropDeets(listing)" class="genevaProfile">
+            <ion-slides pager="true">
+                <ion-slide *ngFor="let img of listing.imgUrl">
+                  <img src={{img}} />
+                </ion-slide>
+              </ion-slides>
+          <ion-card-header>
+            <ion-card-subtitle class="genevaSubtile">{{listing.location}}</ion-card-subtitle>
+            <ion-card-title class="genevaProfile">{{listing.name}}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="genevaDescription">
+              {{listing.description}}
+          </ion-card-content>
+        </ion-card>
+        
+      </div>
+ </div>
+</ion-content>

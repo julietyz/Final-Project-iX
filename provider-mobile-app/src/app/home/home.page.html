@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Register
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding" style="text-align: center">
+    <div class="genevaHome">
+        <h1> Create Your Provider Account </h1>
+        <p></p>
+        <input type="text" name="activity" placeholder="First Name" [(ngModel)]="firstName">
+        <p></p>
+        <input type="text" name="activity" placeholder="Last Name" [(ngModel)]="lastName">
+        <p></p>
+        <input type="text" name="activity" placeholder="Email" [(ngModel)]="email">
+        <p></p>
+        <input type="text" name="activity" placeholder="Password" [(ngModel)]="password">
+        <p></p>
+        <ion-button color="medium" size="large" (click)="createProviderBackend()">Register</ion-button>
+        <p></p>
+        Already Have an Account? 
+        <p></p>
+        <ion-button color="medium" (click)="navToLogin()">Login</ion-button>
+    </div>
+  </div>
+
+</ion-content>
