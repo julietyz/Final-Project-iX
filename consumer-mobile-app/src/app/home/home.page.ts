@@ -29,7 +29,7 @@ export class HomePage {
     private authService: AuthService
 
   ) {
-    //console.log("in home");
+    console.log("in home");
   }
   
   navToProfile() {
@@ -40,7 +40,7 @@ export class HomePage {
   }
 
 
-  login() {
+/*   login() {
     // let authUser = new User(this.eamil,this.password); -- I would do this (add user model)
     const authUser = {
       email: this.email, 
@@ -53,7 +53,7 @@ export class HomePage {
     }).catch(err => {
       this.presentAlert(err);
     });
-  }
+  } */
 
   register() {
     alert("Feature coming soon!")

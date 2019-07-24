@@ -9,7 +9,6 @@ export class UserService {
 } */
 
 import { Injectable } from '@angular/core';
-import { User } from '../Models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
@@ -18,13 +17,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
   // This should be type of user to make life a whole lot easier(use listings model as a guide):
-  users: Array<User>;
-  loggedInUser: User;
 
   constructor(
     private httpClient: HttpClient
   ) {
-    this.users = [
+/*     this.users = [
       {
         id: 23, 
         firstName: 'John',
@@ -52,10 +49,10 @@ export class UserService {
         password: '123', 
         role: "user"
       },
-    ];
+    ]; */
   }
 
-  public logIn(Authuser: any) { // This should be type user
+  /* public logIn(Authuser: any) { // This should be type user
 
     return new Promise((resolve, reject) => {
 
@@ -87,7 +84,7 @@ export class UserService {
 
   getLoggedInUser(): any { // This should be type user
     return this.loggedInUser;
-  }
+  } */
 
   getAllUsers(){
     return new Promise((resolve, reject) => {
