@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { ListingService } from '../services/listing.service';
 import { ProviderService } from '../services/provider.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { ProviderAuthService } from '../services/provider-auth.service';
 
 
 
@@ -23,7 +24,9 @@ export class ProfilePage {
   constructor(
     private navCtrl: NavController,
     private listingService: ListingService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private providerAuthService: ProviderAuthService
+
   ) {
     this.id = window.localStorage.getItem('providerid');
     this.listingsBackend = [];
@@ -67,6 +70,11 @@ export class ProfilePage {
   navToPropDeets(listing) {
     localStorage.setItem('listingid', listing.id);
     this.navCtrl.navigateForward("prop-deets");
+  }
+
+  logout(){
+    this.providerAuthService.logout();
+    this.navCtrl.navigateForward('login');
   }
 
 }

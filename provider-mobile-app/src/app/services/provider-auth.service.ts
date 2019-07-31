@@ -21,6 +21,7 @@ export class ProviderAuthService {
       .subscribe((response: any) => {
           console.log(response.id);
           localStorage.setItem('providerid', response.id);
+          localStorage.setItem('isLoggedIn', 'true');
           resolve(response);
         },
         (err) => {
@@ -31,6 +32,13 @@ export class ProviderAuthService {
       );
 
     });
+  }
+
+  logout(){
+    
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('providerid', '');
+
   }
 
 
