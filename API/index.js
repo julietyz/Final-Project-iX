@@ -5,6 +5,9 @@ const cors = require("cors");
 const app = express();
 
 app.use(cors());
+//Image Hosting:
+app.use("/uploads", express.static(path.join(__dirname, "./uploads")));
+
 
 const usersRouter = require('./src/api/user-routes');
 const listingRouter = require('./src/api/listing-routes');

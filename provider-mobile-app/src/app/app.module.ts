@@ -11,13 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, BrowserModule,
-    BrowserAnimationsModule],
+    BrowserAnimationsModule, ReactiveFormsModule,],
   providers: [
     StatusBar,
     SplashScreen,

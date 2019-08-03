@@ -114,6 +114,20 @@ module.exports = class User {
         });
     }
 
+    updateByImage(userId, url){
+      return new Promise((resolve, reject) => {
+        mysqlConn.query("UPDATE user SET image = ? WHERE id = ?", url, userId, function(err, res) {
+              if (err) {
+                console.log("error: ", err);
+                reject(err);
+              } else {
+                resolve(res);
+              }
+            }
+          );
+      });
+    }
+
     // Working 
     updateByID(userId, user){
       return new Promise((resolve, reject) => {

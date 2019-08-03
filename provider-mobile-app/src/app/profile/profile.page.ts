@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { ListingService } from '../services/listing.service';
 import { ProviderService } from '../services/provider.service';
 import { forEach } from '@angular/router/src/utils/collection';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProviderAuthService } from '../services/provider-auth.service';
+import { UploadService } from '../services/upload.service';
 
 
 
@@ -15,6 +17,10 @@ import { ProviderAuthService } from '../services/provider-auth.service';
 export class ProfilePage {
 
   providers: any;
+  ngForm: FormGroup;
+ image: any;
+ public user: any;
+
 
   listingsBackend: any;
   dummy: any;
@@ -25,11 +31,20 @@ export class ProfilePage {
     private navCtrl: NavController,
     private listingService: ListingService,
     private providerService: ProviderService,
-    private providerAuthService: ProviderAuthService
+    private providerAuthService: ProviderAuthService,
+    private uploadService: UploadService,
+   private formBuilder: FormBuilder,
+   private modalCtrl: ModalController
+
 
   ) {
     this.id = window.localStorage.getItem('providerid');
     this.listingsBackend = [];
+
+    this.ngForm = this.formBuilder.group({
+      avatar: ['']
+    });
+ 
 
   }
 
@@ -76,5 +91,37 @@ export class ProfilePage {
     this.providerAuthService.logout();
     this.navCtrl.navigateForward('login');
   }
+  createImageFromBlob(image){
+    let reader = new FileReader();
+    reader.addEventListener("load", () =>{
+      this.image = reader.result;
+    }, false);
+    if(image){
+      this.image = reader.readAsDataURL(image);
+    }
+  }
+  
+  onFileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.ngForm.get('avatar').setValue(file);
+      this.createImageFromBlob(file);
+    }
+  }
+  
+  onSubmit() {
+    const formData = new FormData();
+    formData.append('file', this.ngForm.get('avatar').value);
+ 
+    const userId = localStorage.getItem('userId');
+    this.uploadService.uploadImage(userId, formData, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        this.user = res.user;
+      }
+    });
+  }
+ 
 
 }

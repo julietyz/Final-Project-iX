@@ -4,6 +4,13 @@ const router = express.Router();
 
 const User = require("../models/user-model.js");
 
+const UploadService = require("../services/upload-service");
+const uploadService = new UploadService();
+
+const UserService = require("../services/user-service");
+const userService = new UserService();
+
+
 // Working
 router.get("/", function (req, res) {
     
@@ -71,5 +78,27 @@ router.post("/delete", function (req, res) {
             res.status(400).send(err);
         });
 });
+
+router.post("/image/:userId", (req, res) => {
+    uploadService
+      .upload(req, res)
+      .then(() => {
+        const userId = req.params.userId;
+        const url = "http://localhost:5000/uploads/" + req.file.filename;
+   
+        userService
+          .setImageUrl(userId, url)
+          .then(user => {
+            res.json({ user });
+          })
+          .catch(err => {
+            res.status(400).json({ msg: err });
+          });
+      })
+      .catch(err => {
+        res.status(400).json({ msg: err });
+      });
+   });
+   
 
 module.exports = router;
